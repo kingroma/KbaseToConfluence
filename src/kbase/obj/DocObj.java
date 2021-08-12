@@ -21,5 +21,8 @@ public class DocObj {
 		this.body = body;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "[DocObj title=" + title + ", body=" + body + "]";
+	}
 }

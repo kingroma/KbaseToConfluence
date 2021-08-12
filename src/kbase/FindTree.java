@@ -8,12 +8,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import kbase.obj.TreeObj;
+import util.Static;
 
 // root 
 //<li> 
 //<div class="plugin_pagetree_childtoggle_container"> <a class="plugin_pagetree_childtoggle" href=" "> <img id="plusminus102605914-" border="0" src="/confluence/images/icons/tree_plus.gif"> </a> 
 //</div> 
-//<div class="plugin_pagetree_children_content"> <span class="plugin_pagetree_children_span" id="childrenspan102605914-"> <img src="/confluence/s/1814/51/_/images/icons/docs_16.gif" height="16" width="16" border="0" align="absmiddle" title="00. ÀÎ¼öÀÎ°è¹®¼­"> <a href="/confluence/pages/viewpage.action?pageId=102605914">00. ÀÎ¼öÀÎ°è¹®¼­</a> </span> 
+//<div class="plugin_pagetree_children_content"> <span class="plugin_pagetree_children_span" id="childrenspan102605914-"> <img src="/confluence/s/1814/51/_/images/icons/docs_16.gif" height="16" width="16" border="0" align="absmiddle" title="00. ï¿½Î¼ï¿½ï¿½Î°è¹®ï¿½ï¿½"> <a href="/confluence/pages/viewpage.action?pageId=102605914">00. ï¿½Î¼ï¿½ï¿½Î°è¹®ï¿½ï¿½</a> </span> 
 //</div> 
 //<div id="children102605914-" class="plugin_pagetree_children_container"> 
 //</div> </li>
@@ -23,7 +24,7 @@ import kbase.obj.TreeObj;
 //<div class="plugin_pagetree_childtoggle_container"> 
 // <img border="0" src="/confluence/images/icons/tree_square.gif"> 
 //</div> 
-//<div class="plugin_pagetree_children_content"> <span class="plugin_pagetree_children_span" id="childrenspan102606034-"> <img src="/confluence/s/1814/51/_/images/icons/docs_16.gif" height="16" width="16" border="0" align="absmiddle" title="ÇöÇàÀÌ½´(19.06.13)"> <a href="/confluence/pages/viewpage.action?pageId=102606034">ÇöÇàÀÌ½´(19.06.13)</a> </span> 
+//<div class="plugin_pagetree_children_content"> <span class="plugin_pagetree_children_span" id="childrenspan102606034-"> <img src="/confluence/s/1814/51/_/images/icons/docs_16.gif" height="16" width="16" border="0" align="absmiddle" title="ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½(19.06.13)"> <a href="/confluence/pages/viewpage.action?pageId=102606034">ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½(19.06.13)</a> </span> 
 //</div> 
 //<div id="children102606034-" class="plugin_pagetree_children_container"> 
 // <ul class="plugin_pagetree_children_list" id="child_ul102606034-"></ul> 
@@ -38,8 +39,6 @@ public class FindTree {
 	// http://kbase.alticast.com/confluence/display/SDP/TBroad
 	// root page id 50958401 
 	// last child 102605914
-	
-	private static String JSESSIONID = "32066BF60789C7064B73B4C5EFFB975C" ;
 	
 	private static String ROOT_PAGE_ID = "50958401";
 	 
@@ -67,7 +66,7 @@ public class FindTree {
 			Document doc = 
 					Jsoup
 						.connect(url)
-						.cookie("JSESSIONID", JSESSIONID)
+						.cookie("JSESSIONID", Static.KBASE_JSESSIONID)
 						.get();
 			
 			Elements bodys = doc.getElementsByTag("body");
@@ -179,14 +178,6 @@ public class FindTree {
 		reqString += "&ancestors=" + 48958301 ;
 		
 		return reqString ; 
-	}
-
-	public static String getJSESSIONID() {
-		return JSESSIONID;
-	}
-
-	public static void setJSESSIONID(String jSESSIONID) {
-		JSESSIONID = jSESSIONID;
 	}
 
 	public static String getROOT_PAGE_ID() {
