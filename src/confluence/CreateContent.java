@@ -22,22 +22,28 @@ public class CreateContent {
 //		
 //		create(title, ancestorsId, value);
 		
-//		String str = "<col width=\"24\">";
-//		str = "<div> \r\n"
-//				+ "   <col width=\"100%\">asd\r\n"
-//				+ "  </colgroup>\r\n"
-//				+ "  <tbody>\r\n"
-//				+ "   <tr>\r\n"
-//				+ "    <td valign=\"top\"><img src=\"/confluence/images/icons/emoticons/information.gif\" width=\"16\" height=\"16\" align=\"absmiddle\" alt=\"\" border=\"0\"></td>\r\n"
-//				+ "    <td>어플의 메모리 캐쉬방식에서 오버플로우가 발생하는 경우에 대한 처리를 감안한다. FIFO방식이나 우선순위에 따른 손실처리는 가정하며 이는 사용자의 수집 행위 정보가 100% 전달되지 않아도 된다. (확률적인 통계는 가능)</td>\r\n"
-//				+ "</div>";
-//		checkValue(str);
+		String str = "<td><b>구매목록 숨김</b><br />"
+				+ "시스템에서 구매 건당 각각의 hidden value ( T, M, F ) 3가지 값을 가진다. "
+				+ "<p>&nbsp; &nbsp;-default = ' <b>F</b> '</p> <p>&nbsp; &nbsp;-admin 으로 "
+				+ "<span class=\"nobr\"><a href=\"/confluence/pages/createpage.action?spaceKey=WINDMILL&amp;title=POST users.USER_ID.purchase.PURCHASE_ID.hidden - TBroad\" class=\"createlink\">hidden <sup><img class=\"rendericon\" "
+				+ "src=\"/confluence/images/icons/plus.gif\" height=\"7\""
+				+ " width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\" /></sup></a></span>을 하면"
+				+ " ' <b>T</b> '&nbsp;</p> <p>&nbsp; &nbsp;-user, family 로 <span class=\"nobr\">"
+				+ "<a href=\"/confluence/pages/createpage.action?spaceKey=WINDMILL&amp;title=POST "
+				+ "users.USER_ID.purchase.PURCHASE_ID.hidden - TBroad\" class=\"createlink\">"
+				+ "hidden <sup><img class=\"rendericon\" src=\"/confluence/images/icons/plus.gif\""
+				+ " height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\" /></sup></a>"
+				+ "</span>을 하면 ' <b>M</b> '</p> <p>위 hidden 값 들은 &nbsp;"
+				+ "<span class=\"nobr\"><a href=\"/confluence/pages/"
+				+ "createpage.action?spaceKey=WINDMILL&amp;title=GET"
+				+ " users.USER_ID.purchase - TBroad\" class=\"createlink\">구매리스트<sup><img class=\"rendericon\" src=\"/confluence/images/icons/plus.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\" /></sup></a></span>&nbsp;를&nbsp;호출하는 '<b>계정 타입'</b> 과 <b>&nbsp;'include_hidden</b>' &nbsp;parameter 에 따라 아래표와 같이 노출&nbsp;을 결정 하는 역할을 한다.</p></td>";
+		checkValue(str);
 		// System.out.println(checkValue(str));
 		
-		String html = "";
+//		String html = "";
 		
 		// html = "<td valign=\"top\"><img src=\"/confluence/images/icons/emoticons/information.gif\" width=\"16\" height=\"16\" align=\"absmiddle\" alt=\"\" border=\"0\"/></td>\r\n";
-		create("03. 서비스 API 명세서 - TBroad", 47059680, html);
+//		create("03. 서비스 API 명세서 - TBroad", 47059680, html);
 		
 	}
 	
@@ -58,7 +64,7 @@ public class CreateContent {
 				Response<Map<String,Object>> response = call.execute() ; 
 				
 				if ( response.isSuccessful() ) {
-					System.out.println("response success");
+					// System.out.println("response success");
 					// System.out.println(response.body());
 					result = response.body();
 				} else {
@@ -92,15 +98,15 @@ public class CreateContent {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+//		System.out.println(value);
 //		import org.apache.commons.lang3.StringEscapeUtils;
 		// value = StringEscapeUtils.unescapeHtml3(value);
 		
 		// value = StringEscapeUtils.escapeHtml3(value);
 		
-		value = value.replaceAll("<sup><img class=\"rendericon\" src=\"/confluence/images/icons/linkext7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"></sup>", "");
+//		value = value.replaceAll("<sup><img class=\"rendericon\" src=\"/confluence/images/icons/linkext7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"></sup>", "");
 		value = value.replaceAll("<br class=\"atl-forced-newline\">", "<br class=\"atl-forced-newline\" />");
-		value = value.replaceAll("<img class=\"emoticon\" src=\"/confluence/images/icons/emoticons/star_red.gif\" height=\"16\" width=\"16\" align=\"absmiddle\" alt=\"\" border=\"0\">","★");
+//		value = value.replaceAll("<img class=\"emoticon\" src=\"/confluence/images/icons/emoticons/star_red.gif\" height=\"16\" width=\"16\" align=\"absmiddle\" alt=\"\" border=\"0\">","★");
 		
 		value = value.replaceAll("<div class=\"code panel\" style=\"border-width: 1px;\">", "<div class=\"preformatted panel conf-macro output-block\" style=\"border-width: 1px;\" data-hasbody=\"true\" data-macro-name=\"noformat\">");
 		value = value.replaceAll("<div class=\"preformatted panel\" style=\"border-width: 1px;\">", "<div class=\"preformatted panel conf-macro output-block\" style=\"border-width: 1px;\" data-hasbody=\"true\" data-macro-name=\"noformat\">");
@@ -109,14 +115,26 @@ public class CreateContent {
 		value = value.replaceAll("\\]\\]></script>", "</pre>");
 		value = value.replaceAll("codeContent","preformattedContent");
 		
-		value = value.replaceAll(col_regex1,"<col />");
-		value = value.replaceAll(col_regex2,"<col width=\"$1\"/>");
+		value = value.replaceAll("<img class=\"emoticon\" src=\"/confluence/images/icons/emoticons/star_red.gif\" height=\"16\" width=\"16\" align=\"absmiddle\" alt=\"\" border=\"0\" />", "<span style=\"color:red\">★</span>");
+		value = value.replaceAll("<img class=\"emoticon\" src=\"/confluence/images/icons/emoticons/star_yellow.gif\" height=\"16\" width=\"16\" align=\"absmiddle\" alt=\"\" border=\"0\" />", "<span style=\"color:yellow\">★</span>");
+		value = value.replaceAll("<sup><img class=\"rendericon\" src=\"/confluence/images/icons/plus.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\" /></sup>", "");
+		value = value.replaceAll("<img class=\"rendericon\" src=\"/confluence/images/icons/plus.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\" />", "");
 		
-		value = value.replaceAll(img_regex1, "<img $1/>");
+		// value = value.replaceAll("<span class=\"nobr\">(.*)class=\"createlink\"(.*)</span>","$1$2");
+		value = value.replaceAll("createlink", "");
 		
-		System.out.println("===================");
-		System.out.println(value);
-		System.out.println("===================");
+		value = value.replaceAll("<img src=\"/confluence/images/icons/emoticons/information.gif\" width=\"16\" height=\"16\" align=\"absmiddle\" alt=\"\" border=\"0\" />",
+				"<span style=\"color:blue\">★</span>");
+				
+		value = value.replaceAll("<categorylist>", "");
+//		value = value.replaceAll(col_regex1,"<col />");
+//		value = value.replaceAll(col_regex2,"<col width=\"$1\"/>");
+//		
+//		value = value.replaceAll(img_regex1, "<img $1/>");
+		
+//		System.out.println("===================");
+//		System.out.println(value);
+//		System.out.println("===================");
 		return value ; 
 	}
 }

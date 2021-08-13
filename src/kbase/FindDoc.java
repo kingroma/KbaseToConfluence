@@ -26,13 +26,17 @@ public class FindDoc {
 						.connect(getUrl(pageId))
 						.cookie("JSESSIONID", Static.KBASE_JSESSIONID)
 						.get();
+			doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml);
+			
+//			String html = doc.html();
+//			doc = Jsoup.parse(html);
 			
 			Element title_text = doc.getElementById("title-text");
 			Element title_a = title_text.child(0);
 			String title = title_a.html() ; 
 			
 			String body = doc.getElementsByClass("wiki-content").get(0).html();
-			// System.out.println(body);
+//			System.out.println(body);
 			
 			obj = new DocObj() ;
 			obj.setTitle(title);
